@@ -56,8 +56,8 @@
       <input type="date" id="godate" min="${S.date}" max="${E.END}" value="${S.date}"><button data-act="go">Go</button>
       <button data-act="reset">↺ Reset demo</button><button data-act="tour" style="background:#f5b301;color:#1b1f2a;border-color:#f5b301;font-weight:700">▶ Guided demo</button><button data-act="video">🎬 Video mode</button>
       <span class="sp"></span>
-      <span class="seg"><button data-act="mode" data-v="m" class="${UI.internal ? "" : "on"}">Merchant view</button><button data-act="mode" data-v="i" class="${UI.internal ? "on" : ""}">Razorpay internal</button></span>
-      <button data-act="phone">📱 ${UI.phoneOpen ? "Hide" : "Show"} phone</button>`;
+      <span class="seg"><button data-act="mode" data-v="m" class="${UI.internal ? "" : "on"}">Merchant View</button><button data-act="mode" data-v="i" class="${UI.internal ? "on" : ""}">Internal View</button></span>
+      <button data-act="phone" title="${UI.phoneOpen ? "Hide" : "Show"} the phone">📱 ${UI.phoneOpen ? "Hide" : "Show"}</button>`;
   }
   function side() {
     const n = activeRecs().length;
@@ -383,7 +383,7 @@
     const acted = o.approved + o.edited + o.skipped;
     const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "-");
     const fc = o.forecasts.slice().reverse().map((f) => `<tr><td>${esc(f.name)}</td><td>${f.kind}</td><td class="r num">${f.kind === "receipt" ? SD(f.expected) : f.ccy === "USD" ? usd(f.expected) : inrL(f.expected)}</td><td class="r num">${f.kind === "receipt" ? SD(f.actual) : f.ccy === "USD" ? usd(f.actual) : inrL(f.actual)}</td><td class="r num">${f.kind === "receipt" ? (f.errDays > 0 ? "+" : "") + f.errDays + "d" : (f.err * 100).toFixed(1) + "%"}</td><td>${chip({ conf: f.conf, kind: "x" })}</td><td>${f.hit ? '<span class="chip high">✓ within range</span>' : '<span class="chip low">✗ outside</span>'}</td></tr>`).join("");
-    return `<div class="crumb">Razorpay internal · product analytics</div><div class="ph"><div><h1>FX Strategist outcomes</h1><p>Merchant: Lumio Analytics · pilot period from ${P(D.meta.today)}. In production these aggregate across the exporter cohort.</p></div></div>
+    return `<div class="crumb">Internal View (Razorpay only) · product analytics</div><div class="ph"><div><h1>FX Strategist outcomes</h1><p>Merchant: Lumio Analytics · pilot period from ${P(D.meta.today)}. In production these aggregate across the exporter cohort.</p></div></div>
       <div class="grid g3" id="northstar">
         <div class="card pad kpi"><div class="lab">North star · avoided FX costs since EEFC</div><div class="val num ok">${inrL(o.avoided)}</div><div class="foot">USD bills paid from EEFC instead of buying USD at ~3% card markup</div></div>
         <div class="card pad kpi"><div class="lab">Rate timing effect vs convert-at-settlement</div><div class="val num ${o.rateEffect < 0 ? "warn" : "ok"}">${o.rateEffect >= 0 ? "+" : ""}${inrL(o.rateEffect)}</div><div class="foot">Reported separately - not claimed as agent skill</div></div>

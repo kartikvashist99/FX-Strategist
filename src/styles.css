@@ -263,3 +263,6 @@ main { container-type: inline-size; }
 #decisions-card td:nth-child(2) { width: 120px; }
 #pending-card td.acts .btn { margin-left: 4px; padding: 3px 8px; font-size: 12px; }
 td.empty { padding: 18px 12px !important; line-height: 1.5; }
+
+#demobar { gap: 8px; }
+@media (max-width: 1500px) { #demobar input[type=date] { width: 128px; } #demobar .tag { font-size: 10px; } }

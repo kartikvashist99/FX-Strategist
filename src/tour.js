@@ -143,7 +143,7 @@
       text: () => `Bucket by bucket: received, used for payments, converted (manual / agent plan / guardrail) and status against the RBI deadline.` },
     { title: "Guardrails by design", view: "settings", hl: "#autoexec",
       text: () => `The merchant controls the buffer, maximum tranche and co-approval threshold. Auto-execution is deliberately not offered - the only automatic action is the RBI deadline guardrail.` },
-    { title: "Razorpay internal: is it working?", internal: true, hl: "#northstar",
+    { title: "Internal View: is it working?", internal: true, hl: "#northstar",
       text: () => { const o = E.outcomes(S); const S0 = E.initState(); E.advanceTo(S0, E.END); const n = E.outcomes(S0); return `Hidden from merchants. North star: ${inrL(o.avoided)} of avoidable FX cost saved since EEFC; rate timing reported separately (${o.rateEffect >= 0 ? "+" : ""}${inrL(o.rateEffect)}), not claimed as skill. Guardrails: ${o.deadlineMisses} deadline misses, ${o.shortfalls.length} shortfalls. Counterfactual - with no decisions at all: ${n.guardrail.length} forced deadline conversions and ${n.shortfalls.length} payments run short.`; } },
     { title: "Your turn", internal: false, view: "strategist", hl: null, last: true,
       text: () => `That's the full loop: learn → plan → approve (dashboard or WhatsApp) → execute on time → audit → measure. Explore from here, or restore your own session.` },
@@ -170,7 +170,7 @@
     { t: "Target reached (11 Nov)", dwell: 3000, cap: "11 Nov: 89.12 hits the target - approved tranches convert early" },
     { t: "Schedule and finish the month", silent: ["Receipts land, the agent re-plans", "Schedule and finish the month"], dwell: 2800, cap: "1 Dec: payroll paid, buffer intact, zero forced conversions" },
     { t: "Audit trail for the CA", dwell: 2000, cap: "Every decision audit-ready for the CA" },
-    { t: "Razorpay internal: is it working?", dwell: 3600, cap: "Razorpay view: FX cost saved, deadlines met, forecast accuracy" },
+    { t: "Internal View: is it working?", dwell: 3600, cap: "Razorpay view: FX cost saved, deadlines met, forecast accuracy" },
   ];
 
   const idxOf = (title) => { const i = STEPS.findIndex((s) => s.title === title); if (i < 0) throw new Error("tour step missing: " + title); return i; };
